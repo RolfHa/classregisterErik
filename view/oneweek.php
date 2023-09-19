@@ -4,7 +4,62 @@
     <meta charset="UTF-8">
     <title>Klassenbuch</title>
     <meta name="viewport" content="initial-scale=0.8">
-    <link rel="stylesheet" href="css/oneweek.css">
+<!--    <link rel="stylesheet" href="css/oneweek.css">-->
+    <style>
+        body {
+            background-color: white;
+            background-image: url("../img/Klassenbuch.png");
+        }
+
+        @media print
+        {
+            .no-print, .no-print *
+            {
+                display: none !important;
+            }
+        }
+        #next{
+            position: absolute;
+            left: 1000px;
+            top: 50px;
+        }
+        #previous{
+            position: absolute;
+            left: 150px;
+            top: 50px;
+        }
+        #save{
+            position: absolute;
+            left: 500px;
+            top: 50px;
+        }
+        .navtext{
+            font-size: 40px;
+        }
+        #kw {
+            position: absolute;
+            left: 2120px;
+            top:  365px;
+        }
+        .zahlen {
+            font-size: 30px;
+        }
+        input {
+            font-size: 36px;
+            border: none;
+        }
+        #module {
+            position: absolute;
+            left: 380px;
+            top: 356px;
+            font-size: 46px;
+        }
+        #lessonscontent {
+            position: absolute;
+            left:100px;
+            top: 900px;
+        }
+    </style>
 </head>
 <body>
 <div id="container">
@@ -33,47 +88,59 @@
         <div id="notice"><input type="text" name="notice" style="width: 1500px;" value="<?php
             echo $notice; ?>"></div>
         <!-- einträge -->
-        <div id="lesson0"><input name="lesson[]" type="text" style="width: 1200px;"
-                                  value="<?php
-                                  echo $lesson[0]->getAmContent(); ?>"></div>
-        <div id="lesson1"><input name="lesson[]" type="text" style="width: 1200px;"
-                                  value="<?php
-                                  echo $lesson[0]->getPmContent(); ?>"></div>
-        <div id="lesson2"><input name="lesson[]" style="width: 1200px;" type="text"
-                                  value="<?php
-                                  echo $lesson[1]->getAmContent(); ?>"></div>
-        <div id="lesson3"><input name="lesson[]" type="text" style="width: 1200px;"
-                                  value="<?php
-                                  echo $lesson[1]->getPmContent(); ?>"></div>
-        <div id="lesson4"><input name="lesson[]" type="text" style="width: 1200px;"
-                                  value="<?php
-                                  echo $lesson[2]->getAmContent(); ?>"></div>
-        <div id="lesson5"><input name="lesson[]" type="text" style="width: 1200px;"
-                                  value="<?php
-                                  echo $lesson[2]->getPmContent(); ?>"></div>
-        <div id="lesson6"><input name="lesson[]" type="text" style="width: 1200px;"
-                                  value="<?php
-                                  echo $lesson[3]->getAmContent(); ?>"></div>
-        <div id="lesson7"><input name="lesson[]" type="text" style="width: 1200px;"
-                                  value="<?php
-                                  echo $lesson[3]->getPmContent(); ?>"></div>
-        <div id="lesson8"><input name="lesson[]" type="text" style="width: 1200px;"
-                                  value="<?php
-                                  echo $lesson[4]->getAmContent(); ?>"></div>
-        <div id="lesson9"><input name="lesson[]" type="text" style="width: 1200px;"
-                                  value="<?php
-                                  echo $lesson[4]->getPmContent(); ?>"></div>
-        <!-- Dozenten -->
-        <div id="teacher1"><input type="text" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
-        <div id="teacher2"><input type="text" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
-        <div id="teacher3"><input type="text" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
-        <div id="teacher4"><input type="text" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
-        <div id="teacher5"><input type="text" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
+        <div id="lessonscontent">
+            <div class="day">
+                <div class="lessonam"><input name="lesson[]" type="text" style="width: 1200px;"
+                                             value="<?php
+                                             echo $lesson[0]->getAmContent(); ?>"></div>
+                <div class="lessonpm"><input name="lesson[]" type="text" style="width: 1200px;"
+                                             value="<?php
+                                             echo $lesson[0]->getPmContent(); ?>"></div>
+                <div class="teacher"><input type="text" name="teacher[]" value="<?php
+                    echo $teacher; ?>"></div>
+            </div>
+
+            <div class="day">
+                <div class="lessonam"><input name="lesson[]" style="width: 1200px;" type="text"
+                                             value="<?php
+                                             echo $lesson[1]->getAmContent(); ?>"></div>
+                <div class="lessonpm"><input name="lesson[]" type="text" style="width: 1200px;"
+                                             value="<?php
+                                             echo $lesson[1]->getPmContent(); ?>"></div>
+                <div class="teacher"><input type="text" name="teacher[]" value="<?php
+                    echo $teacher; ?>"></div>
+            </div>
+            <div class="day">
+                <div class="lessonam"><input name="lesson[]" type="text" style="width: 1200px;"
+                                             value="<?php
+                                             echo $lesson[2]->getAmContent(); ?>"></div>
+                <div class="lessonpm"><input name="lesson[]" type="text" style="width: 1200px;"
+                                             value="<?php
+                                             echo $lesson[2]->getPmContent(); ?>"></div>
+                <div class="teacher"><input type="text" name="teacher[]" value="<?php
+                    echo $teacher; ?>"></div>
+            </div>
+            <div class="day">
+                <div class="lessonam"><input name="lesson[]" type="text" style="width: 1200px;"
+                                             value="<?php
+                                             echo $lesson[3]->getAmContent(); ?>"></div>
+                <div class="lessonpm"><input name="lesson[]" type="text" style="width: 1200px;"
+                                             value="<?php
+                                             echo $lesson[3]->getPmContent(); ?>"></div>
+                <div class="teacher"><input type="text" name="teacher[]" value="<?php
+                    echo $teacher; ?>"></div>
+            </div>
+            <div class="day">
+                <div class="lessonam"><input name="lesson[]" type="text" style="width: 1200px;"
+                                             value="<?php
+                                             echo $lesson[4]->getAmContent(); ?>"></div>
+                <div class="lessonpm"><input name="lesson[]" type="text" style="width: 1200px;"
+                                             value="<?php
+                                             echo $lesson[4]->getPmContent(); ?>"></div>
+                <div class="teacher"><input type="text" name="teacher[]" value="<?php
+                    echo $teacher; ?>"></div>
+            </div>
+        </div>
     </form>
 </div>
 </body>

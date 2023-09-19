@@ -16,6 +16,7 @@
 body {
     background-color: white;
     background-image: url("../img/Klassenbuch.png");
+    height: 1653px;
 }
 
 @media print
