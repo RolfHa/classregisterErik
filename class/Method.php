@@ -9,10 +9,14 @@ class Method
      * @param int $id
      * @param string $name
      */
-    public function __construct(int $id, string $name)
+    public function __construct(int $id = null, string $name = null)
     {
-        $this->id = $id;
-        $this->name = $name;
+        if ($id === null) {
+
+        } else {
+            $this->id = $id;
+            $this->name = $name;
+        }
     }
 
     public function getId(): int
@@ -30,10 +34,27 @@ class Method
         $dbh = Db::getConnection();
         $sql = "SELECT * FROM method WHERE id=:id";
         $sth = $dbh->prepare($sql);
-        $sth->bindParam('Id', $Id, PDO::PARAM_INT);
+        $sth->bindParam('id', $Id, PDO::PARAM_INT);
         $sth->execute();
 
         return $sth->fetchObject('Method');
+    }
+
+    /**
+     * @param int $lessonId
+     * @return Methods[]
+     */
+    public function getMethodsBylessionId(int $lessonId): array
+    {
+        $lessonDatas = (new Method2Lesson())->getMethod2LessonsByLessonId($lessonId);
+        return $lessonDatas;
+    }
+
+
+
+    public function getMethodsByLessonId(int $lessonId): array
+    {
+
     }
 
 }

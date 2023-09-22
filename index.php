@@ -45,35 +45,37 @@ switch ($action) {
         $requestWeek = $postWeek->getLastOrStandardWeek($postWeek);
 }
 
-// aus $postWeek werden die anzuzeigenden Daten aufbereitet
-// id ist PK
-$id = $requestWeek->getId();
-// Unterrichtsmodul
-$module = $requestWeek->getModule();
-// Kalenderwoche Nummer
-$weekNo = $requestWeek->getWeekNo();
-// Tageseinträge
-$lesson = $requestWeek->getLessonsByCalWeekId();
-// Bememerkung
-$notice = $requestWeek->getNotice();
-// Dozent
-$teacher = $requestWeek->getTeacher();
+// Übergabevariable: $w für view
+$w = $requestWeek;
+//// aus $postWeek werden die anzuzeigenden Daten aufbereitet
+//// id ist PK
+//$id = $requestWeek->getId();
+//// Unterrichtsmodul
+//$module = $requestWeek->getModule();
+//// Kalenderwoche Nummer
+//$weekNo = $requestWeek->getWeekNo();
+//// Tageseinträge
+//$lesson = $requestWeek->getLessonsByCalWeekId();
+//// Bememerkung
+//$notice = $requestWeek->getNotice();
+//// Dozent
+//$teacher = $requestWeek->getTeacher();
 
 // Datum erstellen aus KW und Kalenderjahr für jeweiliges Tagesdatum
 // Wochenzahl muss 2-stellig sein
-if ($weekNo < 10) {
-    $weekNo2digits = '0' . $weekNo;
+if ($w->getWeekNo() < 10) {
+    $weekNo2digits = '0' . $w->getWeekNo();
 } else {
-    $weekNo2digits = '' . $weekNo;
+    $weekNo2digits = '' . $w->getWeekNo();
 }
 
 // Datum erzeugen bis Freitag
 $datum = [];
-if ($weekNo == 1) {
+if ($w->getWeekNo() == 1) {
     $date = DateHelper::getFirstMondayInYear(YEAR);
 } else {
     $date = DateHelper::getFirstMondayInYear(YEAR)
-      ->add(new DateInterval('P'. $weekNo-1 . 'W'));
+      ->add(new DateInterval('P'. $w->getWeekNo()-1 . 'W'));
 
 }
 

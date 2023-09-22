@@ -98,6 +98,7 @@ class Week
         return Week::getByWeekNo($weekNo);
     }
 
+
     /**
      * @return int
      */
@@ -138,30 +139,6 @@ class Week
         }
         return $calWeeks[0];
     }
-
-//    /**
-//     * Constructs a new Week object using the provided parameters.
-//     *
-//     * @param int $id The ID of the week.
-//     * @param int $weekNo The week number.
-//     * @param string $module The module name.
-//     * @param string $teacher The names of the teachers.
-//     * @param string $notice Any additional notice for the week.
-//     * @param array $lessons An array of lesson objects for the week.
-//     *
-//     * @return Week The constructed Week object.
-//     */
-//    public static function buildFromPDO(
-//        int $id,
-//        int $weekNo,
-//        string $module,
-//        string $teacher,
-//        string $notice,
-//        array $lessons
-//    ): Week
-//    {
-//        return new Week($id, $weekNo, $module, $teacher, $notice, $lessons);
-//    }
 
     /**
      * @return int
@@ -205,6 +182,13 @@ class Week
         $l = new Lesson();
         return $l->getLessonsByCalWeekId($this->getId());
     }
+
+    public function getLessons(): array
+    {
+        return $this->lessons;
+    }
+
+
 
     public function save(): Week
     {
@@ -261,6 +245,7 @@ class Week
         }
     }
 
+
     /**
      * Returns the last existing week from the database or creates a standard week if no data is found.
      *
@@ -289,6 +274,9 @@ class Week
             echo 'Connection failed: ' . $e->getMessage();
         }
 
+        $week = $calWeeks[0];
+        // lessons füllen
+        $week->lessons = (new Lesson())->getLessonsByCalWeekId($week->getId());
         return $calWeeks[0];
     }
 
@@ -325,4 +313,5 @@ class Week
         }
         return Week::getByWeekNo($weekNo);
     }
+
 }

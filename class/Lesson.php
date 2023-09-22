@@ -12,7 +12,7 @@ class Lesson
      * @var int
      * FK
      */
-    private int $calWeekId;
+    private int $calweekId;
     private string $weekday;
     /**
      * @var string
@@ -24,6 +24,21 @@ class Lesson
      * maxlength 65
      */
     private string $pmContent;
+    /**
+     * @var Method[] $methods
+     */
+    private array $methods;
+
+    public function getMethods(): array
+    {
+        return $this->methods;
+    }
+
+    public function setMethods(array $methods): void
+    {
+        $this->methods = $methods;
+    }
+
 
     public function getId(): int
     {
@@ -47,9 +62,11 @@ class Lesson
 
     public function getCalweekId(): ?int
     {
+        if ($this->calweekId === null) {
+            return null;
+        }
         return $this->calweekId;
     }
-
 
 
     /**
@@ -71,7 +88,14 @@ class Lesson
             $this->amContent = $amContent;
             $this->pmContent = $pmContent;
         }
+        // array lessons füllen
+//        if (isset($this->id)) {
+//            (new Method2Lesson())- $this->getMethodIds($this->getId());
+//            $dummy = (new Method())->getMethodsByLessonId($this->getLessionId());
+//            $this->lessons = dummy;
+//        }
     }
+
 
 
     /**
@@ -86,16 +110,17 @@ class Lesson
         $sth = $dbh->prepare($sql);
         $sth->bindParam('calWeekId', $calWeekId, PDO::PARAM_INT);
         $sth->execute();
-        $dummy = $sth;
-        return $sth->fetchAll(PDO::FETCH_CLASS,'Lesson');
+        $dummy = $sth->fetchAll(PDO::FETCH_CLASS, 'Lesson');
+        //return $sth->fetchAll(PDO::FETCH_CLASS, 'Lesson');
+        return $dummy;
     }
 
-    public function createLessons(int $calWeekId,
-                                  string $amContent1, string  $pmContent1,
-                                  string $amContent2, string  $pmContent2,
-                                  string $amContent3, string  $pmContent3,
-                                  string $amContent4, string  $pmContent4,
-                                  string $amContent5, string  $pmContent5
+    public function createLessons(int    $calWeekId,
+                                  string $amContent1, string $pmContent1,
+                                  string $amContent2, string $pmContent2,
+                                  string $amContent3, string $pmContent3,
+                                  string $amContent4, string $pmContent4,
+                                  string $amContent5, string $pmContent5
     ): void
     {
         $dbh = Db::getConnection();
@@ -136,17 +161,18 @@ class Lesson
         $sth->bindParam('pmContent', $pmContent5, PDO::PARAM_STR);
         $sth->execute();
     }
-    public function update(int $calWeekId,
-                                  string $amContent1, string  $pmContent1,
-                                  string $amContent2, string  $pmContent2,
-                                  string $amContent3, string  $pmContent3,
-                                  string $amContent4, string  $pmContent4,
-                                  string $amContent5, string  $pmContent5) : void
+
+    public function update(int    $calWeekId,
+                           string $amContent1, string $pmContent1,
+                           string $amContent2, string $pmContent2,
+                           string $amContent3, string $pmContent3,
+                           string $amContent4, string $pmContent4,
+                           string $amContent5, string $pmContent5): void
     {
         $dbh = Db::getConnection();
         $sql = "UPDATE lesson SET amContent= :amContent, " .
-                  "pmContent= :pmContent " .
-                  "WHERE calweekId=:calweekId AND weekday=:weekday";
+            "pmContent= :pmContent " .
+            "WHERE calweekId=:calweekId AND weekday=:weekday";
         $sth = $dbh->prepare($sql);
         $sth->bindParam('calweekId', $calWeekId, PDO::PARAM_INT);
 
@@ -179,6 +205,10 @@ class Lesson
         $sth->bindParam('amContent', $amContent5, PDO::PARAM_STR);
         $sth->bindParam('pmContent', $pmContent5, PDO::PARAM_STR);
         $sth->execute();
+    }
+
+    private function getMethodIds(int $getId)
+    {
     }
 
 }

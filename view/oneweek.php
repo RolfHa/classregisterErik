@@ -9,7 +9,7 @@
 <body>
 <div id="container">
     <form method="post">
-        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="hidden" name="id" value="<?php echo $w->getId(); ?>">
         <div id="previous" class="no-print">
             <button type="submit" name="action" value="previous" class="navtext"><= vorige Woche</button>
         </div>
@@ -21,8 +21,8 @@
         </div>
 
         <div id="module"><input type="text" name="module" value="<?php
-            echo $module; ?>"></div>
-        <div id="kw"><input type="text" class="zahlen" name="kw" style="width: 40px;" value="<?php echo $weekNo; ?>">
+            echo $w->getModule(); ?>"></div>
+        <div id="kw"><input type="text" class="zahlen" name="kw" style="width: 40px;" value="<?php echo $w->getWeekNo(); ?>">
         </div>
         <div id="datum0"><input type="text" class="zahlen" value="<?php echo $datum[0]; ?>"></div>
         <div id="datum1"><input type="text" class="zahlen" value="<?php echo $datum[1]; ?>"></div>
@@ -31,59 +31,59 @@
         <div id="datum4"><input type="text" class="zahlen" value="<?php echo $datum[4]; ?>"></div>
         <!-- Bem -->
         <div id="notice"><input type="text" name="notice" style="width: 1450px;" value="<?php
-            echo $notice; ?>"></div>
+            echo $w->getNotice(); ?>"></div>
         <!-- einträge -->
         <div id="lesson0"><input name="lesson[]" type="text" style="width: var(--lessionContentLength);"
                                  value="<?php
-                                 echo $lesson[0]->getAmContent(); ?>"></div>
+                                 echo $w->getLessons[0]->getAmContent(); ?>"></div>
         <div id="lesson1"><input name="lesson[]" type="text" style="width: var(--lessionContentLength);"
                                  value="<?php
-                                 echo $lesson[0]->getPmContent(); ?>"></div>
+                                 echo $w->getLessons[0]->getPmContent(); ?>"></div>
         <div id="lesson2"><input name="lesson[]" style="width: var(--lessionContentLength);" type="text"
                                  value="<?php
-                                 echo $lesson[1]->getAmContent(); ?>"></div>
+                                 echo $w->getLessons[1]->getAmContent(); ?>"></div>
         <div id="lesson3"><input name="lesson[]" type="text" style="width: var(--lessionContentLength);"
                                  value="<?php
-                                 echo $lesson[1]->getPmContent(); ?>"></div>
+                                 echo $w->getLessons[1]->getPmContent(); ?>"></div>
         <div id="lesson4"><input name="lesson[]" type="text" style="width: var(--lessionContentLength);"
                                  value="<?php
-                                 echo $lesson[2]->getAmContent(); ?>"></div>
+                                 echo $w->getLessons[2]->getAmContent(); ?>"></div>
         <div id="lesson5"><input name="lesson[]" type="text" style="width: var(--lessionContentLength);"
                                  value="<?php
-                                 echo $lesson[2]->getPmContent(); ?>"></div>
+                                 echo $w->getLessons[2]->getPmContent(); ?>"></div>
         <div id="lesson6"><input name="lesson[]" type="text" style="width: var(--lessionContentLength);"
                                  value="<?php
-                                 echo $lesson[3]->getAmContent(); ?>"></div>
+                                 echo $w->getLessons[3]->getAmContent(); ?>"></div>
         <div id="lesson7"><input name="lesson[]" type="text" style="width: var(--lessionContentLength);"
                                  value="<?php
-                                 echo $lesson[3]->getPmContent(); ?>"></div>
+                                 echo $w->getLessons[3]->getPmContent(); ?>"></div>
         <div id="lesson8"><input name="lesson[]" type="text" style="width: var(--lessionContentLength);"
                                  value="<?php
-                                 echo $lesson[4]->getAmContent(); ?>"></div>
+                                 echo $w->getLessons[4]->getAmContent(); ?>"></div>
         <div id="lesson9"><input name="lesson[]" type="text" style="width: var(--lessionContentLength);"
                                  value="<?php
-                                 echo $lesson[4]->getPmContent(); ?>"></div>
+                                 echo $w->getLessons[4]->getPmContent(); ?>"></div>
 
         <!-- Module -->
-            <?php
-                for($i=1;$i<=5;$i++){
-                    for ($j=1;$j<=4;$j++){
-                        echo '<input type="checkbox" id="checkbox'.$i.$j.'" name="">'.'<br>';
-                    }
-                }
-            ?>
+        <?php
+        for($i=1;$i<=5;$i++){
+            for ($j=1;$j<=4;$j++){
+                echo '<input type="checkbox" id="checkbox'.$i.$j.'" name="checkbox'.$i.$j.'">'.'<br>';
+            }
+        }
+        ?>
 
         <!-- Dozenten -->
         <div id="teacher1"><input type="text" style="width: var(--teacherInputLenght);" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
+            echo $w->getTeacher(); ?>"></div>
         <div id="teacher2"><input type="text" style="width: var(--teacherInputLenght);" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
+            echo $w->getTeacher(); ?>"></div>
         <div id="teacher3"><input type="text" style="width: var(--teacherInputLenght);" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
+            echo $w->getTeacher(); ?>"></div>
         <div id="teacher4"><input type="text" style="width: var(--teacherInputLenght);" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
+            echo $w->getTeacher(); ?>"></div>
         <div id="teacher5"><input type="text" style="width: var(--teacherInputLenght);" name="teacher[]" value="<?php
-            echo $teacher; ?>"></div>
+            echo $w->getTeacher(); ?>"></div>
     </form>
 </div>
 </body>

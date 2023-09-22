@@ -70,4 +70,10 @@ class Method2Lesson
             $sth->execute();
         }
     }
+
+
+    public function getMethodsByLessonId(int $lessonId): array
+    {
+
+    }
 }
