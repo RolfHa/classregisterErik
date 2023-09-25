@@ -173,6 +173,14 @@ class Week
     }
 
     /**
+     * @return Lesson[]
+     */
+    public function getLessons(): array{
+        return $this->lessons;
+    }
+
+
+    /**
      * Retrieve the lessons by calendar week ID.
      *
      * @return array The lessons associated with the calendar week.
@@ -183,10 +191,10 @@ class Week
         return $l->getLessonsByCalWeekId($this->getId());
     }
 
-    public function getLessons(): array
-    {
-        return $this->lessons;
-    }
+//    public function getLessons(): array
+//    {
+//        return $this->lessons;
+//    }
 
 
 
