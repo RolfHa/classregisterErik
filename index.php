@@ -53,7 +53,9 @@ $module = $requestWeek->getModule();
 // Kalenderwoche Nummer
 $weekNo = $requestWeek->getWeekNo();
 // Tageseinträge
-$lesson = $requestWeek->getLessonsByCalWeekId();
+$lessons = $requestWeek->getLessonsByCalWeekId();
+// Unterrichtsmethoden
+//
 // Bememerkung
 $notice = $requestWeek->getNotice();
 // Dozent

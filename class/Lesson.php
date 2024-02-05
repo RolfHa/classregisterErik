@@ -12,7 +12,7 @@ class Lesson
      * @var int
      * FK
      */
-    private int $calWeekId;
+    //private int $calWeekId;
     private string $weekday;
     /**
      * @var string
@@ -24,6 +24,12 @@ class Lesson
      * maxlength 65
      */
     private string $pmContent;
+
+    private array $methods;
+
+    public function addMethods(array $methods){
+        Method::getMethodsByLessonId();
+    }
 
     public function getId(): int
     {
@@ -86,8 +92,9 @@ class Lesson
         $sth = $dbh->prepare($sql);
         $sth->bindParam('calWeekId', $calWeekId, PDO::PARAM_INT);
         $sth->execute();
-        $dummy = $sth;
-        return $sth->fetchAll(PDO::FETCH_CLASS,'Lesson');
+        $lessonsWithoutMethods = $sth->fetchAll(PDO::FETCH_CLASS,'Lesson');
+
+        return $lessonsWithoutMethods;
     }
 
     public function createLessons(int $calWeekId,
